@@ -12,9 +12,7 @@ import com.example.bradcampbell.library.PresenterFragment;
 
 public class Hello1Fragment extends PresenterFragment<Hello1Component, Hello1Presenter> {
     @Override protected Hello1Component onCreateComponent() {
-        return DaggerHello1Component.builder()
-                .hello1Module(new Hello1Module())
-                .build();
+        return DaggerHello1Component.create();
     }
 
     @Nullable @Override
