@@ -7,6 +7,7 @@ import android.widget.TextView;
 
 import com.example.bradcampbell.app.R;
 import com.example.bradcampbell.app.events.NavigateToHello2Event;
+import com.squareup.otto.Bus;
 
 import javax.inject.Inject;
 
@@ -14,10 +15,11 @@ import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
 
-import static com.example.bradcampbell.app.App.getBus;
+import static com.example.bradcampbell.app.App.getAppComponent;
 
 public class Hello1LinearLayout extends LinearLayout implements Hello1View {
     @Inject Hello1Presenter presenter;
+    @Inject Bus bus;
 
     @InjectView(R.id.text) TextView textView;
 
@@ -35,7 +37,7 @@ public class Hello1LinearLayout extends LinearLayout implements Hello1View {
     }
 
     @Override public void goToNextScreen() {
-        getBus(getContext()).post(new NavigateToHello2Event());
+        bus.post(new NavigateToHello2Event());
     }
 
     @OnClick(R.id.button) public void buttonPressed() {

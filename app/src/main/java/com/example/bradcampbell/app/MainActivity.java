@@ -6,13 +6,19 @@ import com.example.bradcampbell.app.events.NavigateToHello2Event;
 import com.example.bradcampbell.app.hello1.Hello1Fragment;
 import com.example.bradcampbell.app.hello2.Hello2Fragment;
 import com.example.bradcampbell.library.ComponentActivity;
+import com.squareup.otto.Bus;
 import com.squareup.otto.Subscribe;
 
-import static com.example.bradcampbell.app.App.getBus;
+import javax.inject.Inject;
+
+import static com.example.bradcampbell.app.App.getAppComponent;
 
 public class MainActivity extends ComponentActivity {
+    @Inject Bus bus;
+
     @Override public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getAppComponent(this).inject(this);
         setContentView(R.layout.activity_main);
         if (savedInstanceState == null) {
             getSupportFragmentManager()
@@ -24,12 +30,12 @@ public class MainActivity extends ComponentActivity {
 
     @Override protected void onResume() {
         super.onResume();
-        getBus(this).register(this);
+        bus.register(this);
     }
 
     @Override protected void onPause() {
         super.onPause();
-        getBus(this).unregister(this);
+        bus.unregister(this);
     }
 
     @Subscribe public void onNavigateToHello2Event(NavigateToHello2Event event) {

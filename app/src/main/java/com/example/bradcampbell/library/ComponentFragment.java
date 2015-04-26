@@ -44,11 +44,11 @@ public abstract class ComponentFragment<C> extends Fragment {
         return componentDelegate.getComponent();
     }
 
-    protected abstract C onCreateComponent();
+    protected abstract C onCreateNonConfigurationComponent();
 
     private ComponentFactory<C> componentFactory = new ComponentFactory<C>() {
         @NonNull @Override public C createComponent() {
-            return onCreateComponent();
+            return onCreateNonConfigurationComponent();
         }
     };
 }

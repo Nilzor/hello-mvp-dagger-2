@@ -3,17 +3,15 @@ package com.example.bradcampbell.app;
 import android.app.Application;
 import android.content.Context;
 
-import com.squareup.otto.Bus;
-
 public class App extends Application {
-    private Bus bus;
+    private AppComponent component;
 
     @Override public void onCreate() {
         super.onCreate();
-        bus = new Bus();
+        component = DaggerAppComponent.create();
     }
 
-    public static Bus getBus(Context context) {
-        return ((App)context.getApplicationContext()).bus;
+    public static AppComponent getAppComponent(Context context) {
+        return ((App)context.getApplicationContext()).component;
     }
 }
