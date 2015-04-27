@@ -1,52 +1,46 @@
 package com.example.bradcampbell.library;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicLong;
 
-public class ComponentActivity extends AppCompatActivity implements ComponentCache {
+public class ComponentCacheDelegate {
     private static final String NEXT_ID_KEY = "next-presenter-id";
 
     private NonConfigurationInstance nonConfigurationInstance;
 
-    @Override public void onCreate(Bundle savedInstanceState) {
-        nonConfigurationInstance =
-                (NonConfigurationInstance) getLastCustomNonConfigurationInstance();
+    public void onCreate(Bundle savedInstanceState, Object nonConfigurationInstance) {
         if (nonConfigurationInstance == null) {
-            long seed;
-            if (savedInstanceState == null) {
-                seed = 0;
-            } else {
+            long seed = 0;
+            if (savedInstanceState != null) {
                 seed = savedInstanceState.getLong(NEXT_ID_KEY);
             }
-            nonConfigurationInstance = new NonConfigurationInstance(seed);
+            this.nonConfigurationInstance = new NonConfigurationInstance(seed);
+        } else {
+            this.nonConfigurationInstance = (NonConfigurationInstance)nonConfigurationInstance;
         }
-        super.onCreate(savedInstanceState);
     }
 
-    @Override
     public void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
         outState.putLong(NEXT_ID_KEY, nonConfigurationInstance.nextId.get());
     }
 
-    @Override public Object onRetainCustomNonConfigurationInstance() {
+    public Object onRetainCustomNonConfigurationInstance() {
         return nonConfigurationInstance;
     }
 
-    @Override public long generateId() {
+    public long generateId() {
         return nonConfigurationInstance.nextId.getAndIncrement();
     }
 
     @SuppressWarnings("unchecked")
-    @Override public final <C> C getComponent(long index) {
+    public final <C> C getComponent(long index) {
         return (C) nonConfigurationInstance.components.get(index);
     }
 
-    @Override public void setComponent(long index, Object component) {
+    public void setComponent(long index, Object component) {
         nonConfigurationInstance.components.put(index, component);
     }
 

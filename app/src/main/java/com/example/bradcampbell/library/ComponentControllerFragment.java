@@ -6,9 +6,9 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 
-public abstract class ComponentFragment<C> extends Fragment {
+public abstract class ComponentControllerFragment<C> extends Fragment {
     private ComponentCache componentCache;
-    private ComponentDelegate<C> componentDelegate = new ComponentDelegate<>();
+    private ComponentControllerDelegate<C> componentDelegate = new ComponentControllerDelegate<>();
 
     @Override public void onAttach(Activity activity) {
         super.onAttach(activity);

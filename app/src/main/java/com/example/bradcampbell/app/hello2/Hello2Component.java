@@ -1,7 +1,7 @@
 package com.example.bradcampbell.app.hello2;
 
 import com.example.bradcampbell.app.AppComponent;
-import com.example.bradcampbell.library.InjectsPresenter;
+import com.example.bradcampbell.library.HasPresenter;
 
 import dagger.Component;
 
@@ -10,6 +10,6 @@ import dagger.Component;
         dependencies = AppComponent.class
 )
 @Hello2Scope
-public interface Hello2Component extends InjectsPresenter<Hello2Presenter> {
+public interface Hello2Component extends HasPresenter<Hello2Presenter> {
     Hello2LinearLayout inject(Hello2LinearLayout view);
 }

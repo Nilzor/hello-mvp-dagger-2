@@ -5,7 +5,7 @@ import android.os.Bundle;
 import com.example.bradcampbell.app.events.NavigateToHello2Event;
 import com.example.bradcampbell.app.hello1.Hello1Fragment;
 import com.example.bradcampbell.app.hello2.Hello2Fragment;
-import com.example.bradcampbell.library.ComponentActivity;
+import com.example.bradcampbell.library.ComponentCacheActivity;
 import com.squareup.otto.Bus;
 import com.squareup.otto.Subscribe;
 
@@ -13,7 +13,7 @@ import javax.inject.Inject;
 
 import static com.example.bradcampbell.app.App.getAppComponent;
 
-public class MainActivity extends ComponentActivity {
+public class MainActivity extends ComponentCacheActivity {
     @Inject Bus bus;
 
     @Override public void onCreate(Bundle savedInstanceState) {

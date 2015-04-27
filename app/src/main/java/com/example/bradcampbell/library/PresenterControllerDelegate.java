@@ -6,7 +6,7 @@ import android.view.View;
 import static com.example.bradcampbell.library.PresenterBundleUtils.getPresenterBundle;
 import static com.example.bradcampbell.library.PresenterBundleUtils.setPresenterBundle;
 
-public class PresenterDelegate<P extends Presenter> {
+public class PresenterControllerDelegate<P extends Presenter> {
     private boolean isDestroyedBySystem;
     private P presenter;
 

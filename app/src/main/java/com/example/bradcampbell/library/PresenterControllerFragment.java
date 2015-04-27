@@ -5,9 +5,9 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.View;
 
-public abstract class PresenterFragment<C extends InjectsPresenter<P>, P extends Presenter>
-        extends ComponentFragment<C> {
-    private PresenterDelegate<P> presenterDelegate = new PresenterDelegate<>();
+public abstract class PresenterControllerFragment<C extends HasPresenter<P>, P extends Presenter>
+        extends ComponentControllerFragment<C> {
+    private PresenterControllerDelegate<P> presenterDelegate = new PresenterControllerDelegate<>();
 
     @Override public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

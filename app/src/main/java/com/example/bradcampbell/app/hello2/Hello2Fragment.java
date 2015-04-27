@@ -8,11 +8,11 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.bradcampbell.app.R;
-import com.example.bradcampbell.library.PresenterFragment;
+import com.example.bradcampbell.library.PresenterControllerFragment;
 
 import static com.example.bradcampbell.app.App.getAppComponent;
 
-public class Hello2Fragment extends PresenterFragment<Hello2Component, Hello2Presenter> {
+public class Hello2Fragment extends PresenterControllerFragment<Hello2Component, Hello2Presenter> {
     @Override protected Hello2Component onCreateNonConfigurationComponent() {
         return DaggerHello2Component.builder()
                 .appComponent(getAppComponent(getActivity()))

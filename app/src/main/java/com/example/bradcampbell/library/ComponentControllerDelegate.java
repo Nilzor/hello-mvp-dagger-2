@@ -4,7 +4,7 @@ import android.os.Bundle;
 
 import static com.example.bradcampbell.library.PresenterBundleUtils.*;
 
-public class ComponentDelegate<C> {
+public class ComponentControllerDelegate<C> {
     private static final String PRESENTER_INDEX_KEY = "presenter-index";
 
     private C component;
