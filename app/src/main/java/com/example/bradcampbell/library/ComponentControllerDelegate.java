@@ -38,7 +38,7 @@ public class ComponentControllerDelegate<C> {
 
     public void onDestroy() {
         if (!isDestroyedBySystem) {
-            // User is exiting this view, remove presenter from the cache
+            // User is exiting this view, remove component from the cache
             cache.setComponent(componentId, null);
         }
     }
