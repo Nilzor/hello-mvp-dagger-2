@@ -11,8 +11,7 @@ public class ComponentCacheActivity extends AppCompatActivity implements Compone
         super.onCreate(savedInstanceState);
     }
 
-    @Override
-    public void onSaveInstanceState(Bundle outState) {
+    @Override public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         delegate.onSaveInstanceState(outState);
     }
@@ -25,7 +24,6 @@ public class ComponentCacheActivity extends AppCompatActivity implements Compone
         return delegate.generateId();
     }
 
-    @SuppressWarnings("unchecked")
     @Override public final <C> C getComponent(long index) {
         return delegate.getComponent(index);
     }
