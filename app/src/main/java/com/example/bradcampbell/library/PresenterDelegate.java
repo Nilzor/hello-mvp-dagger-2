@@ -43,7 +43,6 @@ public class PresenterDelegate<P extends Presenter> {
 
     public void onDestroy() {
         if (!isDestroyedBySystem) {
-            // User is exiting this view, remove presenter from the cache
             presenter.onDestroy();
         }
     }
