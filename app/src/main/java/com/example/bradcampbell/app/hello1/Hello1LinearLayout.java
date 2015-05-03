@@ -15,9 +15,7 @@ import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
 
-import static com.example.bradcampbell.app.App.getAppComponent;
-
-public class Hello1LinearLayout extends LinearLayout implements Hello1View {
+public class Hello1LinearLayout extends LinearLayout {
     @Inject Hello1Presenter presenter;
     @Inject Bus bus;
 
@@ -32,11 +30,12 @@ public class Hello1LinearLayout extends LinearLayout implements Hello1View {
         ButterKnife.inject(this);
     }
 
-    @Override public void show(CharSequence stuff) {
-        textView.setText(stuff);
+    /** Sets the view data from the view model */
+    public void update(Hello1ViewModel model) {
+        textView.setText(model.updatedText);
     }
 
-    @Override public void goToNextScreen() {
+    public void goToNextScreen() {
         bus.post(new NavigateToHello2Event());
     }
 

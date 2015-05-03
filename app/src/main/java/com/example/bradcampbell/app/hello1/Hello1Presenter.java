@@ -6,31 +6,31 @@ import android.support.annotation.Nullable;
 import com.example.bradcampbell.library.BasePresenter;
 import com.example.bradcampbell.library.PresenterBundle;
 
-import java.text.DateFormat;
-import java.util.Date;
-
-class Hello1Presenter extends BasePresenter<Hello1View> {
-    private static final String SERIAL_KEY = "serial";
-
-    private final DateFormat format = DateFormat.getDateInstance();
-    private int serial = -1;
+class Hello1Presenter extends BasePresenter<Hello1LinearLayout> {
+    private static final String VIEWMODEL_KEY = "hello1ViewModel";
+    private Hello1ViewModel viewModel;
 
     public void buttonPressed() {
         view.goToNextScreen();
     }
 
-    @Override public void bindView(Hello1View view) {
+    // Todo: make this reusable base method. view.update(viewModel) is a recurring pattern.
+    @Override public void bindView(Hello1LinearLayout view) {
         super.bindView(view);
-        view.show("Update #" + ++serial + " at " + format.format(new Date()));
+        viewModel.updateSerial();
+        viewModel.updateText();
+        view.update(viewModel);
     }
 
     @Override public void onCreate(@Nullable PresenterBundle bundle) {
+        viewModel = new Hello1ViewModel();
         if (bundle != null) {
-            serial = bundle.getInt(SERIAL_KEY);
+            viewModel = (Hello1ViewModel) bundle.getSerializable(VIEWMODEL_KEY);
+            viewModel.updateText();
         }
     }
 
     @Override public void onSaveInstanceState(@NonNull PresenterBundle bundle) {
-        bundle.putInt(SERIAL_KEY, serial);
+        bundle.putSerializable(VIEWMODEL_KEY, viewModel);
     }
 }
